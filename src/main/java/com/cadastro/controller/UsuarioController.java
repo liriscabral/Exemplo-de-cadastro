@@ -13,7 +13,8 @@ import com.cadastro.dto.UsuarioDTO;
 import com.cadastro.service.UsuarioService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 @RestController
@@ -44,7 +45,16 @@ public class UsuarioController {
         return usuarioService.buscarUsuarioPorId(id)
                             .map(ResponseEntity::ok)
                             .orElse(ResponseEntity.notFound().build());
-    }   
+    }
     
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioDTO usuarioDTO) {
+        try {
+            Usuario usuarioAtualizado = usuarioService.atualizarUsuario(id, usuarioDTO);
+            return ResponseEntity.ok(usuarioAtualizado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
     
 }

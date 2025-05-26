@@ -3,6 +3,7 @@ package com.cadastro.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,8 +59,20 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public Usuario atualizUsuario(Long id, UsuarioDTO usuarioDTO) {
-        throw new UnsupportedOperationException("Unimplemented method 'atualizUsuario'");
+    public Usuario atualizarUsuario(Long id, UsuarioDTO usuarioDTO) {
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+        if (optionalUsuario.isEmpty()) {
+            throw new RuntimeException("Usuario não encontrado com o Id: " + id);
+        }
+
+        Usuario usuario = optionalUsuario.get();
+        usuario.setNome(usuarioDTO.getNome());
+        usuario.setEmail(usuarioDTO.getEmail());
+        usuario.setDataNascimento(usuarioDTO.getDataNascimento());
+        usuario.setSexo(usuarioDTO.getSexo());
+        usuario.setCep(usuarioDTO.getCep());
+
+        return usuarioRepository.save(usuario);
     }
 
     @Override

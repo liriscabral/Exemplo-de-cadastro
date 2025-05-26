@@ -48,8 +48,8 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public List<Usuario> listaUsuarios() {
-        throw new UnsupportedOperationException("Unimplemented method 'listaUsuarios'");
+    public List<Usuario> listarUsuarios() {
+        return usuarioRepository.findAll();
     }
 
     @Override

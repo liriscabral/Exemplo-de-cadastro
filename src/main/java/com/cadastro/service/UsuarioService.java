@@ -12,13 +12,13 @@ public interface UsuarioService {
     Usuario cadastrarUsuario(UsuarioDTO usuarioDTO);
 
     //listar usuario
-    List<Usuario> listaUsuarios();
+    List<Usuario> listarUsuarios();
 
     //buscar por id
     Optional<Usuario> buscarUsuarioPorId(Long id);
 
     //atualizar usuario
-    Usuario atualizUsuario(Long id, UsuarioDTO usuarioDTO);
+    Usuario atualizarUsuario(Long id, UsuarioDTO usuarioDTO);
 
     //remover usuario
     void deletarUsuario(Long id);

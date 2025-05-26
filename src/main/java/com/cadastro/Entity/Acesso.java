@@ -14,6 +14,7 @@ public class Acesso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String tipoAcesso;
     @Column(length = 64)
     private String senha;
@@ -23,9 +24,18 @@ public class Acesso {
     private Usuario usuario;
 
     public Acesso(){}
-    public Acesso(String tipoAcesso, String senha) {
+
+    public Acesso(Usuario usuario, String tipoAcesso, String senha) {
+        this.usuario = usuario;
         this.tipoAcesso = tipoAcesso;
         this.senha = senha;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Long getId() {

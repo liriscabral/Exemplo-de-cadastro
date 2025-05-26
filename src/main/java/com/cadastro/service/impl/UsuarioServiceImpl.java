@@ -12,6 +12,7 @@ import com.cadastro.dto.UsuarioDTO;
 import com.cadastro.repository.AcessoRepository;
 import com.cadastro.repository.UsuarioRepository;
 import com.cadastro.service.UsuarioService;
+import com.cadastro.util.HashUtil;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
@@ -24,6 +25,11 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     public Usuario cadastrarUsuario(UsuarioDTO usuarioDTO) {
         
+        if(usuarioRepository.findByEmail(usuarioDTO.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("Email já cadastrado!");
+        }
+        String senhaHash = HashUtil.gerarHashSHA256(usuarioDTO.getAcesso().getSenha());
+
         Usuario usuario = new Usuario(
             usuarioDTO.getNome(),
             usuarioDTO.getEmail(),
@@ -32,12 +38,11 @@ public class UsuarioServiceImpl implements UsuarioService{
             usuarioDTO.getCep()
         );
 
-        Acesso acesso = new Acesso("USER", "senha123");
+        Acesso acesso = new Acesso(usuario, "USER", senhaHash);
         usuario.setAcesso(acesso);
 
         Usuario usuarioSalvo = usuarioRepository.save(usuario);    
         acessoRepository.save(acesso);
-
         return usuarioSalvo;
 
     }
@@ -48,7 +53,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public Optional<Usuario> buscarPorId(Long id) {
+    public Optional<Usuario> buscarUsuarioPorId(Long id) {
         throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
     }
 

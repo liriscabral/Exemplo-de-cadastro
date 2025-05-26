@@ -12,6 +12,7 @@ import com.cadastro.Entity.Usuario;
 import com.cadastro.dto.UsuarioDTO;
 import com.cadastro.service.UsuarioService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -37,5 +38,13 @@ public class UsuarioController {
         List<Usuario> usuarios = usuarioService.listarUsuarios();
         return ResponseEntity.ok(usuarios);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable Long id) {
+        return usuarioService.buscarUsuarioPorId(id)
+                            .map(ResponseEntity::ok)
+                            .orElse(ResponseEntity.notFound().build());
+    }   
+    
     
 }

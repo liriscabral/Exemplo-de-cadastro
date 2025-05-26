@@ -54,7 +54,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public Optional<Usuario> buscarUsuarioPorId(Long id) {
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
+        return usuarioRepository.findById(id);
     }
 
     @Override

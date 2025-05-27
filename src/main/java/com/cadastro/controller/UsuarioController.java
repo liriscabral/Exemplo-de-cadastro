@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cadastro.Entity.Usuario;
 import com.cadastro.dto.UsuarioDTO;
 import com.cadastro.service.UsuarioService;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -52,6 +54,16 @@ public class UsuarioController {
         try {
             Usuario usuarioAtualizado = usuarioService.atualizarUsuario(id, usuarioDTO);
             return ResponseEntity.ok(usuarioAtualizado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
+        try {
+            usuarioService.deletarUsuario(id);
+            return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }

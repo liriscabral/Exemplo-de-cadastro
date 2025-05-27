@@ -77,7 +77,16 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public void deletarUsuario(Long id) {
-        throw new UnsupportedOperationException("Unimplemented method 'deletarUsuario'");
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+        if (optionalUsuario.isPresent()) {
+            Usuario usuario = optionalUsuario.get();
+            if (usuario.getAcesso() != null) {
+                acessoRepository.delete(usuario.getAcesso());
+            }
+            usuarioRepository.delete(usuario);
+        } else {
+            throw new RuntimeException("Usuário não encontrado com o Id: " + id);
+        }
     }
     
 }

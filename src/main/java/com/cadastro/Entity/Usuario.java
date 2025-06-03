@@ -1,4 +1,4 @@
-package com.cadastro.Entity;
+package com.cadastro.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

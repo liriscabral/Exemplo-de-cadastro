@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.cadastro.Entity.Usuario;
+
 import com.cadastro.dto.UsuarioDTO;
+import com.cadastro.entity.Usuario;
 import com.cadastro.service.UsuarioService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;

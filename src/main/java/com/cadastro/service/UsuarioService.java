@@ -3,8 +3,8 @@ package com.cadastro.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.cadastro.Entity.Usuario;
 import com.cadastro.dto.UsuarioDTO;
+import com.cadastro.entity.Usuario;
 
 public interface UsuarioService {
     

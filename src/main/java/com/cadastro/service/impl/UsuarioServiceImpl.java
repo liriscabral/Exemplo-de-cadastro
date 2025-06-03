@@ -7,9 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cadastro.Entity.Acesso;
-import com.cadastro.Entity.Usuario;
 import com.cadastro.dto.UsuarioDTO;
+import com.cadastro.entity.Acesso;
+import com.cadastro.entity.Usuario;
 import com.cadastro.repository.AcessoRepository;
 import com.cadastro.repository.UsuarioRepository;
 import com.cadastro.service.UsuarioService;

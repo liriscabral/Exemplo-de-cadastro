@@ -30,26 +30,40 @@ public class CategoriaService implements CategoriaInterface {
 
     @Override
     public List<Categoria> listarCategoria() {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'listarCategoria'");
+        return categoriaRepository.findAll();
     }
 
     @Override
     public Optional<Categoria> buscarCategoriaPorId(Long id) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'buscarCategoriaPorId'");
+        return categoriaRepository.findById(id);
     }
 
     @Override
-    public Categoria atualizarCategoria(CategoriaDTO categoriaDTO) {
+    public Categoria atualizarCategoria(Long id, CategoriaDTO categoriaDTO) {
         
-        throw new UnsupportedOperationException("Unimplemented method 'atualizarCategoria'");
+        Optional<Categoria> optionalCategoria = categoriaRepository.findById(id);
+        if (optionalCategoria.isEmpty()) {
+            throw new RuntimeException("Categoria não encontrada com o Id: " + id);
+        }
+
+        Categoria categoria = optionalCategoria.get();
+        categoria.setId(categoria.getId());
+        categoria.setNome(categoriaDTO.getNome());
+
+        return categoriaRepository.save(categoria);
     }
 
     @Override
     public void excluirCategoria(Long id) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'excluirCategoria'");
+        Optional<Categoria> optionalCategoria = categoriaRepository.findById(id);
+        if (optionalCategoria.isEmpty()) {
+            throw new RuntimeException("Categoria não encontrada com o Id: " + id);            
+        }
+
+        Categoria categoria = optionalCategoria.get();
+        categoria.setId(categoria.getId());
+
+        categoriaRepository.delete(categoria);
     }
     
 }

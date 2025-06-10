@@ -14,7 +14,7 @@ public interface CategoriaInterface {
 
     Optional<Categoria> buscarCategoriaPorId(Long id);
 
-    Categoria atualizarCategoria(CategoriaDTO categoriaDTO);
+    Categoria atualizarCategoria(Long id, CategoriaDTO categoriaDTO);
 
     void excluirCategoria(Long id);
 

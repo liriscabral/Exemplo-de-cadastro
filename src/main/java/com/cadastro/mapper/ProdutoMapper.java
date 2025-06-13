@@ -26,17 +26,25 @@ public class ProdutoMapper {
         return produto;
     }
 
-    public ProdutoDTO tDto(Produto entity) {
-        ProdutoDTO dto = new ProdutoDTO(entity.getId(), entity.getNome(), entity.getDescricao(), entity.getPreco(), entity.getStatus(), entity.getCategoria());
-
-        // Convertendo Categoria -> CategoriaDTO
+    public ProdutoDTO toDto(Produto entity) {
+        CategoriaDTO categoriaDTO = null;
+    
         if (entity.getCategoria() != null) {
-            CategoriaDTO categoriaDTO = new CategoriaDTO();
-            categoriaDTO.setId(entity.getCategoria().getId());            
+            categoriaDTO = new CategoriaDTO();
+            categoriaDTO.setId(entity.getCategoria().getId());
             categoriaDTO.setNome(entity.getCategoria().getNome());
-            dto.setCategoria(categoriaDTO);
         }
-
+    
+        ProdutoDTO dto = new ProdutoDTO(
+            entity.getId(),
+            entity.getNome(),
+            entity.getDescricao(),
+            entity.getPreco(),
+            entity.getStatus(),
+            categoriaDTO
+        );
+    
         return dto;
     }
+    
 }

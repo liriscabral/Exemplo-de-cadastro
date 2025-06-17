@@ -13,8 +13,7 @@ public class ProdutoDTO {
     private CategoriaDTO categoria;
 
     public ProdutoDTO() {}    
-    public ProdutoDTO(Long id, String nome, String descricao, Double preco, StatusProduto status,
-            CategoriaDTO categoria) {
+    public ProdutoDTO(Long id, String nome, String descricao, Double preco, StatusProduto status, CategoriaDTO categoria) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;

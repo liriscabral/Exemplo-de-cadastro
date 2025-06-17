@@ -32,8 +32,6 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
-
-    public Long getId() {return id;}
     
     public Produto() {}    
     public Produto(Long id, String nome, String descricao, Double preco, StatusProduto status, Categoria categoria) {
@@ -45,6 +43,10 @@ public class Produto {
         this.categoria = categoria;
     }
 
+
+    public Long getId() {
+        return id;
+    }
     public void setId(Long id) {
         this.id = id;
     }
@@ -52,7 +54,6 @@ public class Produto {
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -60,7 +61,6 @@ public class Produto {
     public String getDescricao() {
         return descricao;
     }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
@@ -68,7 +68,6 @@ public class Produto {
     public Double getPreco() {
         return preco;
     }
-
     public void setPreco(Double preco) {
         this.preco = preco;
     }
@@ -76,7 +75,6 @@ public class Produto {
     public StatusProduto getStatus() {
         return status;
     }
-
     public void setStatus(StatusProduto status) {
         this.status = status;
     }
@@ -84,11 +82,8 @@ public class Produto {
     public Categoria getCategoria() {
         return categoria;
     }
-
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-
-    
 
 }
